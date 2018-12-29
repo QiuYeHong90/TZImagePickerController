@@ -60,6 +60,7 @@
     if (_imagePickerVc == nil) {
         _imagePickerVc = [[UIImagePickerController alloc] init];
         _imagePickerVc.delegate = self;
+
         // set appearance / 改变相册选择页的导航栏外观
         _imagePickerVc.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
         _imagePickerVc.navigationBar.tintColor = self.navigationController.navigationBar.tintColor;
@@ -206,6 +207,8 @@
             [self presentViewController:vc animated:YES completion:nil];
         } else { // preview photos / 预览照片
             TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithSelectedAssets:_selectedAssets selectedPhotos:_selectedPhotos index:indexPath.item];
+            imagePickerVc.ratio =  TOCropViewControllerAspectRatioSquare ;
+            imagePickerVc.allowPreview = NO ;
             imagePickerVc.maxImagesCount = self.maxCountTF.text.integerValue;
             imagePickerVc.allowPickingGif = self.allowPickingGifSwitch.isOn;
             imagePickerVc.allowPickingOriginalPhoto = self.allowPickingOriginalPhotoSwitch.isOn;
@@ -326,7 +329,7 @@
      cropView.layer.borderWidth = 2.0;
      }];*/
     
-    //imagePickerVc.allowPreview = NO;
+    imagePickerVc.allowPreview = NO;
     // 自定义导航栏上的返回按钮
     /*
     [imagePickerVc setNavLeftBarButtonSettingBlock:^(UIButton *leftButton){
