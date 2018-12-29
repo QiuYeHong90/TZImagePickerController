@@ -19,7 +19,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "TZImageRequestOperation.h"
 
-@interface TZPhotoPickerController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate> {
+@interface TZPhotoPickerController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,TOCropViewControllerDelegate> {
     NSMutableArray *_models;
     
     UIView *_bottomToolBar;
@@ -562,9 +562,31 @@ static CGFloat itemMargin = 5;
             // 2. select:check if over the maxImagesCount / 选择照片,检查是否超过了最大个数的限制
             if (tzImagePickerVc.selectedModels.count < tzImagePickerVc.maxImagesCount) {
                 if (tzImagePickerVc.maxImagesCount == 1 && !tzImagePickerVc.allowPreview) {
-                    model.isSelected = YES;
-                    [tzImagePickerVc addSelectedModel:model];
-                    [strongSelf doneButtonClick];
+                    
+                    TZImagePickerController * nav = ( TZImagePickerController *)self.navigationController;
+                    if (nav.ratio != TOCropViewControllerAspectRatioNone) {
+                        
+                        __weak typeof(self) weakSelf = self;
+                        [[TZImageManager manager] getPhotoWithAsset:model.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+                            NSLog(@"===%@",photo);
+                            
+                            if (isDegraded==NO) {
+                                TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:photo];
+                                
+                                [cropController setAspectRatioIndex:nav.ratio];
+                                cropController.delegate = weakSelf;
+                                
+                                [nav pushViewController:cropController animated:YES];
+                            }
+                            
+                        }];
+                    }else{
+                        model.isSelected = YES;
+                        [tzImagePickerVc addSelectedModel:model];
+                        [strongSelf doneButtonClick];
+                    }
+                    
+                    
                     return;
                 }
                 strongCell.selectPhotoButton.selected = YES;
@@ -621,7 +643,20 @@ static CGFloat itemMargin = 5;
         [self pushPhotoPrevireViewController:photoPreviewVc];
     }
 }
+#pragma mark TOCropViewControllerDelegate
 
+- (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle
+{
+    TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
+    if (imagePickerVc.fininshcapture) {
+        imagePickerVc.fininshcapture(image);
+    }
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+- (void)cropViewController:(TOCropViewController *)cropViewController didFinishCancelled:(BOOL)cancelled
+{
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

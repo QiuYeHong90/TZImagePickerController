@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1010"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9F763A411FA071CF00D9E526"
-               BuildableName = "TZImagePickerController.framework"
-               BlueprintName = "TZImagePickerControllerFramework"
+               BlueprintIdentifier = "900E657B1C2BB8D5003D9A9E"
+               BuildableName = "TZImagePickerController.app"
+               BlueprintName = "TZImagePickerController"
                ReferencedContainer = "container:TZImagePickerController.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,7 +28,36 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "900E65941C2BB8D5003D9A9E"
+               BuildableName = "TZImagePickerControllerTests.xctest"
+               BlueprintName = "TZImagePickerControllerTests"
+               ReferencedContainer = "container:TZImagePickerController.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "900E659F1C2BB8D5003D9A9E"
+               BuildableName = "TZImagePickerControllerUITests.xctest"
+               BlueprintName = "TZImagePickerControllerUITests"
+               ReferencedContainer = "container:TZImagePickerController.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "900E657B1C2BB8D5003D9A9E"
+            BuildableName = "TZImagePickerController.app"
+            BlueprintName = "TZImagePickerController"
+            ReferencedContainer = "container:TZImagePickerController.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,15 +71,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F763A411FA071CF00D9E526"
-            BuildableName = "TZImagePickerController.framework"
-            BlueprintName = "TZImagePickerControllerFramework"
+            BlueprintIdentifier = "900E657B1C2BB8D5003D9A9E"
+            BuildableName = "TZImagePickerController.app"
+            BlueprintName = "TZImagePickerController"
             ReferencedContainer = "container:TZImagePickerController.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,15 +90,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9F763A411FA071CF00D9E526"
-            BuildableName = "TZImagePickerController.framework"
-            BlueprintName = "TZImagePickerControllerFramework"
+            BlueprintIdentifier = "900E657B1C2BB8D5003D9A9E"
+            BuildableName = "TZImagePickerController.app"
+            BlueprintName = "TZImagePickerController"
             ReferencedContainer = "container:TZImagePickerController.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

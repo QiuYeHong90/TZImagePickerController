@@ -16,7 +16,9 @@
  原来xib确实会导致性能问题啊...大家也要注意了...
  */
 
+
 #import <UIKit/UIKit.h>
+#import "TOCropViewController.h"
 #import "TZAssetModel.h"
 #import "NSBundle+TZImagePicker.h"
 #import "TZImageManager.h"
@@ -40,6 +42,12 @@
 /// This init method for crop photo / 用这个初始化方法以裁剪图片
 - (instancetype)initCropTypeWithAsset:(PHAsset *)asset photo:(UIImage *)photo completion:(void (^)(UIImage *cropImage,PHAsset *asset))completion;
 
+/**
+ 切图比例
+ */
+@property (nonatomic,assign) TOCropViewControllerAspectRatio ratio;
+typedef void (^fininshcapture)(UIImage *image);
+@property (nonatomic,copy) fininshcapture fininshcapture;
 #pragma mark -
 /// Default is 9 / 默认最大可选9张图片
 @property (nonatomic, assign) NSInteger maxImagesCount;
